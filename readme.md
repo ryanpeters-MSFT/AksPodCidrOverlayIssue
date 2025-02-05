@@ -6,7 +6,7 @@ The issue is that **if the pod CIDR is too small, then AKS will limit the number
 
 For example, if a pod CIDR range is small, such as `/19` (8,192 IPs) and each node can support a max (theoretical) of 256 IPs, then this means AKS **only needs** to create 32 nodes (8,192 / 256 = 32). 
 
-```powershell
+```
 az aks create -n mycluster -g rg-aks-group `
     --network-plugin azure `
     --network-plugin-mode overlay `
@@ -16,7 +16,7 @@ az aks create -n mycluster -g rg-aks-group `
 
 If, given the command above, a cluster is created with a node count > 32, it will result in the error below:
 
-```powershell
+```
 Code: InsufficientSubnetSize
 Message: Pre-allocated IPs 8448 exceeds IPs available 8192 in Subnet Cidr 192.168.0.0/19, Subnet Name networkProfile.podCIDR. If Autoscaler is enabled, the max-count from each nodepool is counted towards this total (which means that pre-allocated IPs count represents a theoretical max value, not the actual number of IPs requested). http://aka.ms/aks/insufficientsubnetsize
 Target: networkProfile.podCIDR
