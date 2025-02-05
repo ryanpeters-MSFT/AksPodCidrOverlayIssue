@@ -8,8 +8,8 @@ az group create -n $GROUP --location eastus2
 az aks create -n $CLUSTER -g $GROUP `
     --network-plugin azure `
     --network-plugin-mode overlay `
-    --pod-cidr 192.168.0.0/23 `
-    -c 3
+    --pod-cidr 192.168.0.0/19 `
+    -c 33
 
 # get credentials
 az aks get-credentials -n $CLUSTER -g $GROUP --overwrite-existing
